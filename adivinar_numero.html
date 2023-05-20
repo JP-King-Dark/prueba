@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Adivinar el Número</title>
+  <style>
+    /* Estilos CSS para la página */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .game-container {
+      margin: 20px auto;
+      width: 300px;
+    }
+
+    .game-input {
+      margin: 10px;
+      padding: 5px;
+      width: 100px;
+    }
+
+    .game-button {
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #f2f2f2;
+      color: #333;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .game-button:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Adivinar el Número</h1>
+  <div class="game-container">
+    <p>Estoy pensando en un número entre 1 y 100.</p>
+    <p>Introduce tu suposición:</p>
+    <input type="number" id="guess-input" class="game-input">
+    <br>
+    <button onclick="checkGuess()" class="game-button">Comprobar</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    // Lógica del juego de adivinar el número
+    var numeroSecreto = Math.floor(Math.random() * 100) + 1;
+    var intentos = 0;
+
+    function checkGuess() {
+      var guess = parseInt(document.getElementById('guess-input').value);
+      intentos++;
+
+      if (guess < numeroSecreto) {
+        document.getElementById('result').innerHTML = "Demasiado bajo. Intenta nuevamente.";
+      } else if (guess > numeroSecreto) {
+        document.getElementById('result').innerHTML = "Demasiado alto. Intenta nuevamente.";
+      } else {
+        document.getElementById('result').innerHTML = "¡Felicitaciones! Adivinaste el número en " + intentos + " intentos.";
+        document.getElementById('guess-input').disabled = true;
+        document.getElementById('guess-button').disabled = true;
+      }
+    }
+  </script>
+</body>
+</html>
